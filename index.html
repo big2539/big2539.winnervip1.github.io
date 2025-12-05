@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แชร์ Flex LINE - Neon Premium</title>
+
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle at center, #05050a, #000000 90%);
+    font-family: 'Tahoma';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 420px;
+    padding: 22px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 0 35px rgba(255,215,0,0.3);
+    backdrop-filter: blur(8px);
+    text-align: center;
+    animation: glowPulse 3s infinite alternate;
+  }
+
+  /* เงาเรืองแสงเคลื่อนไหว */
+  @keyframes glowPulse {
+    0% { box-shadow: 0 0 20px rgba(255,215,0,0.3); }
+    100% { box-shadow: 0 0 45px rgba(255,215,0,0.7); }
+  }
+
+  /* ไฟนีออนล้อมรูป */
+  .preview {
+    width: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    margin: 18px 0;
+    position: relative;
+  }
+
+  .preview img {
+    width: 100%;
+    border-radius: 18px;
+    display: block;
+  }
+
+  .preview::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    padding: 4px;
+    background: linear-gradient(135deg,
+      #ff0000, #ff9900, #ffee00, #33ff00, #00ffee, #3366ff, #cc00ff, #ff0099, #ff0000
+    );
+    background-size: 300%;
+    animation: neonBorder 4s linear infinite;
+    -webkit-mask: 
+      linear-gradient(#000 0 0) content-box, 
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  @keyframes neonBorder {
+    0% { background-position: 0 0; }
+    100% { background-position: 300% 0; }
+  }
+
+  /* ปุ่มเรืองแสงสีรุ้ง */
+  .share-btn {
+    width: 100%;
+    padding: 16px;
+    margin-top: 16px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1a1a1a;
+    background: linear-gradient(90deg,
+      #ff0000, #ff9900, #ffee00,
+      #00ff55, #00eaff, #4466ff,
+      #cc00ff, #ff00aa, #ff0000
+    );
+    background-size: 300%;
+    animation: rainbowAnimate 5s linear infinite;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 0 18px rgba(255,255,255,0.4),
+                0 0 24px rgba(255,215,0,0.5);
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  @keyframes rainbowAnimate {
+    0% { background-position: 0%; }
+    100% { background-position: 300%; }
+  }
+
+  .share-btn:active {
+    transform: scale(0.96);
+  }
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <h2 style="color:#ffe580;">🔥 แชร์ Flex ให้เพื่อน / กลุ่ม</h2>
+
+    <div class="preview">
+      <img src="https://img5.pic.in.th/file/secure-sv1/image---2025-12-05T151022.130.png">
+    </div>
+
+    <button id="shareBtn" class="share-btn">
+      🚀 แชร์ให้เพื่อน / กลุ่ม
+    </button>
+  </div>
+
+<script>
+const LIFF_ID = "2008637844-0bjzBwrZ";
+
+/* FLEX MESSAGE */
+const flexMessage = {
+  type: "flex",
+  altText: "🎰 Neon Promotion!",
+  contents: {
+    type: "bubble",
+    size: "mega",
+    hero: {
+      type: "image",
+      url: "https://img5.pic.in.th/file/secure-sv1/image---2025-12-05T151022.130.png",
+      size: "full",
+      aspectRatio: "1:1",
+      aspectMode: "cover"
+    },
+    body: {
+      type: "box",
+      layout: "vertical",
+      paddingAll: "16px",
+      backgroundColor: "#0d1220",
+      contents: [
+        {
+          type: "text",
+          text: "✨ โปรแรงสุด! โบนัส+ของรางวัล",
+          color: "#ffe680",
+          size: "lg",
+          weight: "bold",
+          align: "center"
+        },
+        {
+          type: "text",
+          text: "สมัครใหม่รับโบนัสทันที 💛 พร้อมสุ่มรางวัลทุกวัน!",
+          size: "sm",
+          color: "#d8eaff",
+          wrap: true,
+          align: "center",
+          margin: "md"
+        }
+      ]
+    },
+    footer: {
+      type: "box",
+      layout: "vertical",
+      spacing: "lg",
+      paddingAll: "16px",
+      backgroundColor: "#070b14",
+      contents: [
+        {
+          type: "button",
+          style: "primary",
+          color: "#ffe680",
+          action: {
+            type: "uri",
+            label: "💛 สมัครรับสิทธิ์",
+            uri: "https://lin.ee/sJra6P0"
+          }
+        },
+        {
+          type: "button",
+          style: "primary",
+          color: "#ffd24d",
+          action: {
+            type: "uri",
+            label: "🚀 เข้าสู่ระบบ",
+            uri: "https://winnerslot88.com"
+          }
+        }
+      ]
+    }
+  }
+};
+
+async function initLiff(){
+  await liff.init({ liffId: LIFF_ID });
+}
+
+async function shareFlex(){
+  await liff.shareTargetPicker([flexMessage]);
+}
+
+window.onload = async ()=>{
+  await initLiff();
+  document.getElementById("shareBtn").onclick = shareFlex;
+};
+</script>
+
+</body>
+</html>
